@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Python Starter App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<link href="/client/content/bootstrap.css" rel="stylesheet"/>
+	<link href="/client/content/bootstrap-responsive.css" rel="stylesheet"/>
+	<link href="/client/content/style.css" rel="stylesheet"/>
+
+    <script src="/client/scripts/modernizr-2.6.2.js"></script>
+
+    <script src="/client/scripts/jquery-1.8.2.js"></script>
+	<script src="/client/scripts/jquery-1.9.1.js"></script>
+
+    <script src="/client/scripts/bootstrap.js"></script>
+   	
+   	
+    <script src="/client/scripts/main.js"></script>
+    <!--Font-->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600" rel="stylesheet" type="text/css">
+    
+
+</head>
+<body>
+    <div id="header-row">
+        <div class="container">
+            <div class="row">
+                <!--LOGO-->
+                <div class="span3"><a class="brand" href="#"><img src="/client/img/Helionlogo.png" style="padding-top:8px"></a></div>
+                <!-- /LOGO -->
+                <!-- MAIN NAVIGATION -->
+                <div class="span9">
+                    <div class="navbar  pull-right">
+                        <div class="navbar-inner">
+                            <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+                            <div class="nav-collapse collapse navbar-responsive-collapse">
+                                <ul class="nav">
+                                    <li class="active"><a href="/index.html">Home</a></li>
+
+                                    <li><a href="/addService.html">Add Services</a></li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- MAIN NAVIGATION -->
+                <div class="container" style="margin-bottom:30px">
+				    <h2>ALS Services</h2>
+				    <div id="buttons">
+				
+				    </div>
+				    <div class="collapsediv" id="filesystem-1.0_div">
+				        <div class="well on">
+				
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service filesystem dotnet-starter-filesystem dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>${name}-filesystem:<br />
+				                &nbsp;&nbsp;type: filesystem
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="harbor-1.0_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service harbor dotnet-starter-harbor dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-harbor:<br />
+				                &nbsp;&nbsp;type: harbor
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="memcached-1.4_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the memecached service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service memcached dotnet-starter-memcached dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-memcached:<br />
+				                &nbsp;&nbsp;type: memcached
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mongodb-2.4_div">
+				        <div class="well on">
+				            
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mongodb dotnet-starter-mongodb dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mongodb:<br />
+				                &nbsp;&nbsp;type: mongodb
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mysql-5.5_div">
+				        <div class="well on">
+				
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the mysql service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mysql dotnet-starter-mysql dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mysql:<br />
+				                &nbsp;&nbsp;type: mysql
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="postgresql-9.1_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the postgres service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service postgresql dotnet-starter-postgresql dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-postgresql:<br />
+				                &nbsp;&nbsp;type: postgresql
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="rabbitmq3-3.1_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the rabbit service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service rabbitmq3 dotnet-starter-rabbitmq3 dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-rabbitmq3:<br />
+				                &nbsp;&nbsp;type: rabbitmq3
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mssql2014_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the sql server service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mssql2014 dotnet-starter-mssql2014 dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mssql2014:<br />
+				                &nbsp;&nbsp;type: mssql2014
+				            </pre>
+				        </div>
+				    </div>
+				
+				</div>
+            </div>
+        </div>
+    </div>
+   
+
+</body>
+</html>

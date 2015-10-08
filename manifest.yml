@@ -1,0 +1,9 @@
+applications:
+  .:
+   name: python-starter-app
+   mem: 128M
+   helion:
+    env:
+        JOBS_QUEUE_NAME: fibq_jobs
+        RESULTS_QUEUE_NAME: fibq_results
+        REST_INTERVAL: 5

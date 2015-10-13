@@ -19,6 +19,4 @@ applications:
        type: memcached
    helion:
     env:
-        JOBS_QUEUE_NAME: fibq_jobs
-        RESULTS_QUEUE_NAME: fibq_results
-        REST_INTERVAL: 5
+        ENV_VAR: ${name}

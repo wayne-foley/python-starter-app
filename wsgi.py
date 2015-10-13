@@ -11,9 +11,9 @@ import sys
 import json
 from threading import Thread
 
-SCRIPT_ROOT = os.path.join(os.path.dirname(__file__), 'view/scripts')
-CSS_ROOT = os.path.join(os.path.dirname(__file__), 'view/content')
-IMG_ROOT = os.path.join(os.path.dirname(__file__), 'view/img')
+SCRIPT_ROOT = os.path.join(os.path.dirname(__file__), 'client/scripts')
+CSS_ROOT = os.path.join(os.path.dirname(__file__), 'client/content')
+IMG_ROOT = os.path.join(os.path.dirname(__file__), 'client/img')
 PAGE_ROOT = os.path.join(os.path.dirname(__file__), 'client')
 logging.basicConfig()
 log = logging.getLogger('receiver')
@@ -37,7 +37,7 @@ def defaultRoute():
 
 @route('/<filename>')
 def fileRoute(filename):
-    log.debug("request for "+filename)
+    log.debug("request for "+filename+", serving from "+PAGE_ROOT)
     return bottle.static_file(filename, root=PAGE_ROOT)
 
 

@@ -19,17 +19,25 @@ logging.basicConfig()
 log = logging.getLogger('receiver')
 log.setLevel(logging.DEBUG)
 
+VCAP_SERVICES = os.getenv("VCAP_SERVICES")
 
 '''
 view routes
 '''
 
+@route('/vcap_services')
+def getVcapServices(): 
+    log.debug("retrieving VCAP_SERVICES")
+    return VCAP_SERVICES
+    
 @route('/')
 def defaultRoute():
+    log.debug("default route request")
     return bottle.static_file('index.html', root=PAGE_ROOT)
 
 @route('/<filename>')
 def fileRoute(filename):
+    log.debug("request for "+filename)
     return bottle.static_file(filename, root=PAGE_ROOT)
 
 

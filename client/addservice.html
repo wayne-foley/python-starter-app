@@ -50,136 +50,177 @@
 		</div>
 	</div>     
     <!-- MAIN NAVIGATION -->
-    <div class="container" style="margin-bottom:30px">
-	    <h2>ALS Services</h2>
-		    <div id="buttons">
-		
-		    </div>
-		    <div class="collapsediv" id="filesystem-1.0_div">
-		        <div class="well on">
-		
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service filesystem dotnet-starter-filesystem dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>${name}-filesystem:<br />
-		                &nbsp;&nbsp;type: filesystem
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="harbor-1.0_div">
-		        <div class="well on">
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service harbor dotnet-starter-harbor dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-harbor:<br />
-		                &nbsp;&nbsp;type: harbor
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="memcached-1.4_div">
-		        <div class="well on">
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the memecached service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service memcached dotnet-starter-memcached dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-memcached:<br />
-		                &nbsp;&nbsp;type: memcached
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="mongodb-2.4_div">
-		        <div class="well on">
-		            
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service mongodb dotnet-starter-mongodb dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-mongodb:<br />
-		                &nbsp;&nbsp;type: mongodb
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="mysql-5.5_div">
-		        <div class="well on">
-		
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the mysql service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service mysql dotnet-starter-mysql dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-mysql:<br />
-		                &nbsp;&nbsp;type: mysql
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="postgresql-9.1_div">
-		        <div class="well on">
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the postgres service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service postgresql dotnet-starter-postgresql dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-postgresql:<br />
-		                &nbsp;&nbsp;type: postgresql
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="rabbitmq3-3.1_div">
-		        <div class="well on">
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the rabbit service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service rabbitmq3 dotnet-starter-rabbitmq3 dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-rabbitmq3:<br />
-		                &nbsp;&nbsp;type: rabbitmq3
-		            </pre>
-		        </div>
-		    </div>
-		    <div class="collapsediv" id="mssql2014_div">
-		        <div class="well on">
-		        </div>
-		        <div class="well off">
-		            <p>To create an instance of the sql server service, execute the  commands below in the directory containing the your app:</p>
-		            <pre>helion
-		                create-service mssql2014 dotnet-starter-mssql2014 dotnet-starter
-		            </pre>
-		            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-		            <pre>
-		                ${name}-mssql2014:<br />
-		                &nbsp;&nbsp;type: mssql2014
-		            </pre>
-		        </div>
-		    </div>
-		
+    <div class="container" style="margin-bottom:30px"> 
+    	<div id="tabs">
+    		<ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#als_services">ALS Services</a></li>
+			  <li><a data-toggle="tab" href="#userdefined_services">User Defined Services</a></li>
+			</ul>
+			
+			<div class="tab-content">
+			  <div id="als_services" class="tab-pane fade in active">
+			  	<p>ALS Services are pre-existing services that can be bound to your application. </p>
+				    <div id="als-service-buttons">
+				
+				    </div>
+				    <div class="collapsediv" id="filesystem_div">
+				        <div class="well on">
+				
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service filesystem dotnet-starter-filesystem dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>${name}-filesystem:<br />
+				                &nbsp;&nbsp;type: filesystem
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="harbor_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service harbor dotnet-starter-harbor dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-harbor:<br />
+				                &nbsp;&nbsp;type: harbor
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="memcached_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the memecached service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service memcached dotnet-starter-memcached dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-memcached:<br />
+				                &nbsp;&nbsp;type: memcached
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mongodb_div">
+				        <div class="well on">
+				            
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mongodb dotnet-starter-mongodb dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mongodb:<br />
+				                &nbsp;&nbsp;type: mongodb
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mysql_div">
+				        <div class="well on">
+				
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the mysql service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mysql dotnet-starter-mysql dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mysql:<br />
+				                &nbsp;&nbsp;type: mysql
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="postgresql_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the postgres service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service postgresql dotnet-starter-postgresql dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-postgresql:<br />
+				                &nbsp;&nbsp;type: postgresql
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="rabbitmq3_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the rabbit service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service rabbitmq3 dotnet-starter-rabbitmq3 dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-rabbitmq3:<br />
+				                &nbsp;&nbsp;type: rabbitmq3
+				            </pre>
+				        </div>
+				    </div>
+				    <div class="collapsediv" id="mssql2014_div">
+				        <div class="well on">
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the sql server service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mssql2014 dotnet-starter-mssql2014 dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mssql2014:<br />
+				                &nbsp;&nbsp;type: mssql2014
+				            </pre>
+				        </div>
+				    </div>  
+			  </div>
+			  <div id="userdefined_services" class="tab-pane fade">
+			  	<p><a href="http://docs.hpcloud.com/devplatform/1.2/helion/user/services/1.2user-provided.html">User Defined Services</a> are services that you can additionally bind to your application. You define a User Defined Service as follows: </p>
+				<pre>helion create-service user-provided [name of service]</pre>
+				<p>The helion CLI will prompt you to specify credential keys and values (note defaults of hostname, port, password):</p>
+				<pre>Which credentials to use for connections [hostname, port, password]:</pre>
+				<p>You can override these defaults with your own credential keys, separate keys with commas, and the CLI will then prompt you for values of each credential key.<br/>
+				When you've created your service, you need to bind it to specific applications</p>
+				<pre>helion bind-service [service name] [application name]</pre>
+				<div id="found_userdefined_services">
+				<p>Here are the current user defined services</p>
+					<div id="userdefined-service-buttons">
+				
+				    </div>
+				    <div class="collapsediv" id="mongodb_div">
+				        <div class="well on">
+				            
+				        </div>
+				        <div class="well off">
+				            <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
+				            <pre>helion
+				                create-service mongodb dotnet-starter-mongodb dotnet-starter
+				            </pre>
+				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+				            <pre>
+				                ${name}-mongodb:<br />
+				                &nbsp;&nbsp;type: mongodb
+				            </pre>
+				        </div>
+				    </div>
+				</div>
+			  </div>
+			</div>
 		</div>
 	</div>
+	
     
    
 

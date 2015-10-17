@@ -3,13 +3,9 @@
 import os
 import bottle
 import logging
-import urlparse
-import uuid
 from bottle import route, get, post, request, template
-import sys
-
+import MySQLdb
 import json
-from threading import Thread
 
 SCRIPT_ROOT = os.path.join(os.path.dirname(__file__), 'client/scripts')
 CSS_ROOT = os.path.join(os.path.dirname(__file__), 'client/content')
@@ -20,6 +16,7 @@ log = logging.getLogger('receiver')
 log.setLevel(logging.DEBUG)
 
 VCAP_SERVICES = os.getenv("VCAP_SERVICES")
+
 
 '''
 view routes
@@ -39,6 +36,82 @@ def defaultRoute():
 def fileRoute(filename):
     log.debug("request for "+filename+", serving from "+PAGE_ROOT)
     return bottle.static_file(filename, root=PAGE_ROOT)
+
+@route('/mysql/<brokername>')
+def testMySQL(brokername):
+    log.debug("testing mysql connection using parameters from %s"%brokername)
+    loadedVcapServices  = json.loads(VCAP_SERVICES)
+    
+    for obj in loadedVcapServices:
+        if obj == "user-provided":
+            
+            userProvided = loadedVcapServices[obj]
+            
+            for broker in userProvided:
+                if brokername == broker["name"]:
+                    credentials = broker['credentials']
+                
+                    
+                    return mysqlConnect(credentials)
+                                     
+        elif obj == brokername:
+            credentials = loadedVcapServices[brokername][0]['credentials']
+            
+            return mysqlConnect(credentials)
+                     
+
+def mysqlConnect(credentials):
+    # expected variables
+    hostname = credentials['hostname']
+    username = credentials['user']
+    password = credentials['password']
+    portNum = credentials['port']
+    dbName = credentials['name']
+    dbInstance = None
+    
+    try: 
+        log.debug("attempting to connect to jdbc:mysql://%s:%s@%s:%d/%s"%(username,password,hostname,int(portNum),dbName))
+        
+        dbInstance = MySQLdb.connect(host=hostname,user=username,passwd=password,db=dbName, port=int(portNum)) 
+        
+        log.debug("creating a table in database %s"%dbName)
+        testTableCreate = 'CREATE TABLE IF NOT EXISTS testtable( test_id int not null, test_value char(100),PRIMARY KEY(test_id));'
+
+        cur = dbInstance.cursor()
+        log.debug('executing fibdata table create')
+        cur.execute(testTableCreate)
+        dbInstance.commit()
+        
+    except MySQLdb.Error, e:
+        log.error("unable to connect to database")
+        return(json.loads('{"result":"failure","description":"failed during mysql table creation"}'))
+    
+    try:
+        log.debug("inserting a value in database %s"%dbName)
+        testTableInsert = "INSERT INTO testtable(test_id, test_value) values(1,'foo')";
+        cur = dbInstance.cursor()
+        cur.execute(testTableInsert)
+        dbInstance.commit() 
+    except MySQLdb.Error, e:
+        log.error("unable to insert data into database")
+        return(json.loads('{"result":"failure","description":"failed during row insertion"}'))
+    
+    
+    try:
+        log.debug("removing created table from  database %s"%dbName)
+        testTableInsert = "DROP TABLE testtable";
+        cur = dbInstance.cursor()
+        cur.execute(testTableInsert)
+        dbInstance.commit() 
+    except MySQLdb.Error, e:
+        log.error("unable to drop table")
+        return(json.loads('{"result":"failure","description":"failed during mysql table deletion"}'))              
+         
+    ret = json.loads('{"result":"success","description":"all mysql connectivity tests passed"}')            
+    
+    return(ret)                    
+            
+    
 
 
 # @route('/addservice.html')

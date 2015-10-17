@@ -17,6 +17,7 @@ applications:
        type: harbor
      ${name}-memcached:
        type: memcached
+   
    helion:
     env:
         ENV_VAR: ${name}

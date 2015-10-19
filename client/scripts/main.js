@@ -44,23 +44,47 @@ $(document).ready(function() {
 		});
 
 		// check for user defined services
-		$("#found_userdefined_services").hide();
+		
 		
 		if(obj['user-provided'] != null) {
-			$("#found_userdefined_services").append("<pre>"+JSON.stringify(obj['user-provided'],null, "\t")+"</pre>")
-			$("#found_userdefined_services").show();
+			
+			$("#userprovided-service-buttons").append("<button id='userprovided-services-howto' class='btn btn-default togglebtn' type='button'>user-provided services how-to</button>");
+			
+			var userprovided_brokers = obj['user-provided']
+			userprovided_brokers.forEach( function(v,i) {
+				upName = v['name'];
+				$("#userprovided-service-buttons").append("<button id='"+upName+"' class='btn btn-success togglebtn udbtn' type='button'>"+upName+"</button>");
+				$("#userprovided_divs").append("<div class='collapsediv well on' id='"+upName+"_div'></div>");
+				$("#"+upName+"_div").hide();
+				$("#"+upName+"_div").append("<pre>"+JSON.stringify(v,null, "\t")+"</pre>");
+				
+			}); 
+			
+			
 		}
 		
-		//collapsed_div behavior
+		$("#userprovided_testform").hide();
+		//collapsed_div behavior for standard services
   		$('.togglebtn').bind('click', function () {
+  			$("#userprovided_testform").hide();
         	$(".collapsediv").hide();
         	var target_id = this.id;
         	$("#" + target_id + "_div").slideDown();
 
     	});
 
+		//collapsed_div behavior for user provided services
+  		$('.udbtn').bind('click', function () {
+        	
+        	$("#userprovided_testform").show();	
+
+    	});
+
+
+
 	});
     $(".collapsediv").hide();
+    $("#userprovided-services-howto_div").show();
     /*
     $.each(services, function( i, v ) {
         //var escaped_id = v.replace( /(:|\.|\[|\]|,)/g, "\\$1" );

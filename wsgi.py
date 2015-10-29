@@ -4,7 +4,6 @@ import os
 import bottle
 import logging
 from bottle import route, get, post, request, template
-from mysql_connect import mysqlConnect
 import json
 
 SCRIPT_ROOT = os.path.join(os.path.dirname(__file__), 'client/scripts')

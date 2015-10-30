@@ -24,7 +24,9 @@ view routes
 @route('/vcap_services')
 def getVcapServices(): 
     log.debug("retrieving VCAP_SERVICES")
-    return VCAP_SERVICES
+    log.debug(VCAP_SERVICES)
+    return json.dumps(VCAP_SERVICES)
+
     
 @route('/')
 def defaultRoute():

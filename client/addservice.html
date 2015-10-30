@@ -4,25 +4,32 @@
     <meta charset="utf-8">
     <title>Python Starter App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   	<link href="/client/content/bootstrap.css" rel="stylesheet"/>
-	<link href="/client/content/bootstrap-responsive.css" rel="stylesheet"/>
-	<link href="/client/content/style.css" rel="stylesheet"/>
+    <link href="/client/content/bootstrap.css" rel="stylesheet"/>
+    <link href="/client/content/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="/client/content/style.css" rel="stylesheet"/>
+    <link href="/client/content/shCore.css" rel="stylesheet"/>
+    <link href="/client/content/shThemeDefault.css" rel="stylesheet"/>
 
     <script src="/client/scripts/modernizr-2.6.2.js"></script>
 
     <script src="/client/scripts/jquery-1.8.2.js"></script>
-	<script src="/client/scripts/jquery-1.9.1.js"></script>
+    <script src="/client/scripts/jquery-1.9.1.js"></script>
 
     <script src="/client/scripts/bootstrap.js"></script>
-   	
-   	
+   
+   
     <script src="/client/scripts/main.js"></script>
+    <script src="/client/scripts/shCore.js"></script>
+    <script src="/client/scripts/shBrushXml.js"></script>
     <!--Font-->
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600" rel="stylesheet" type="text/css">
     
 
 </head>
 <body>
+     <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
     <div id="header-row">
         <div class="container">
             <div class="row">
@@ -46,179 +53,299 @@
                         </div>
                     </div>
                 </div>
-          	</div>
-		</div>
-	</div>     
+            </div>
+        </div>
+    </div>     
     <!-- MAIN NAVIGATION -->
     <div class="container" style="margin-bottom:30px"> 
-    	<div id="tabs">
-    		<ul class="nav nav-tabs">
-			  <li class="active"><a data-toggle="tab" href="#als_services">ALS Services</a></li>
-			  <li><a data-toggle="tab" href="#userprovided_services">User Provided Services</a></li>
-			</ul>
-			
-			<div class="tab-content">
-			  <div id="als_services" class="tab-pane fade in active">
-			  	<p>ALS Services are pre-existing services that can be bound to your application. </p>
-				    <div id="als-service-buttons">
-				
-				    </div>
-				    <div class="collapsediv" id="filesystem_div">
-				        <div class="well on">
-				
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service filesystem dotnet-starter-filesystem dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>${name}-filesystem:<br />
-				                &nbsp;&nbsp;type: filesystem
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="harbor_div">
-				        <div class="well on">
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service harbor dotnet-starter-harbor dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-harbor:<br />
-				                &nbsp;&nbsp;type: harbor
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="memcached_div">
-				        <div class="well on">
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the memecached service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service memcached dotnet-starter-memcached dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-memcached:<br />
-				                &nbsp;&nbsp;type: memcached
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="mongodb_div">
-				        <div class="well on">
-				            
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service mongodb dotnet-starter-mongodb dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-mongodb:<br />
-				                &nbsp;&nbsp;type: mongodb
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="mysql_div">
-				        <div class="well on">
-				
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the mysql service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service mysql dotnet-starter-mysql dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-mysql:<br />
-				                &nbsp;&nbsp;type: mysql
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="postgresql_div">
-				        <div class="well on">
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the postgres service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service postgresql dotnet-starter-postgresql dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-postgresql:<br />
-				                &nbsp;&nbsp;type: postgresql
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="rabbitmq3_div">
-				        <div class="well on">
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the rabbit service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service rabbitmq3 dotnet-starter-rabbitmq3 dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-rabbitmq3:<br />
-				                &nbsp;&nbsp;type: rabbitmq3
-				            </pre>
-				        </div>
-				    </div>
-				    <div class="collapsediv" id="mssql2014_div">
-				        <div class="well on">
-				        </div>
-				        <div class="well off">
-				            <p>To create an instance of the sql server service, execute the  commands below in the directory containing the your app:</p>
-				            <pre>helion
-				                create-service mssql2014 dotnet-starter-mssql2014 dotnet-starter
-				            </pre>
-				            <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
-				            <pre>
-				                ${name}-mssql2014:<br />
-				                &nbsp;&nbsp;type: mssql2014
-				            </pre>
-				        </div>
-				    </div>  
-			  </div>
-			  <div id="userprovided_services" class="tab-pane fade">
-			  	
-				<div id="found_userprovided_services">
-					<p>Here are the current user defined services:</p>
-					<div id="userprovided-service-buttons">
-				
-				    </div>
-					
-					
-					
-				    <div>
-				    
-					<div  id='userprovided_divs'>
-						<div id="userprovided-services-howto_div" class="collapsediv well off">
-							<p><a href="http://docs.hpcloud.com/devplatform/1.2/helion/user/services/1.2user-provided.html">User Provided Services</a> are services that you can additionally bind to your application. You define a User Defined Service as follows: </p>
-							<pre>helion create-service user-provided [name of service]</pre>
-							<p>The helion CLI will prompt you to specify credential keys and values (note defaults of hostname, port, password):</p>
-							<pre>Which credentials to use for connections [hostname, port, password]:</pre>
-							<p>You can override these defaults with your own credential keys, separate keys with commas, and the CLI will then prompt you for values of each credential key.<br/>
-							When you've created your service, you need to bind it to specific applications</p>
-							<pre>helion bind-service [service name] [application name]</pre>
-						</div>
+        <h2>ALS Services<span style="padding-left:10px;font-size:.6em">(these are built into Cloud Foundry and enabled by your admin)</span></h2>
+        <div id="als-service-buttons">
 
-						
-					</div>
-					
-				</div>
-			  </div>
-			</div>
-		</div>
-	</div>
-	
-    
+        </div>
+        <div class="collapsediv" id="filesystem_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the filesystem service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service filesystem dotnet-starter-filesystem dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>${name}-filesystem:<br />
+                    &nbsp;&nbsp;type: filesystem
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="harbor_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the harbor port service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service harbor dotnet-starter-harbor dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-harbor:<br />
+                    &nbsp;&nbsp;type: harbor
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="memcached_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the memecached service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service memcached dotnet-starter-memcached dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-memcached:<br />
+                    &nbsp;&nbsp;type: memcached
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="mongodb_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+             </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the mongo service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service mongodb dotnet-starter-mongodb dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-mongodb:<br />
+                    &nbsp;&nbsp;type: mongodb
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="mysql_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+                <script type="syntaxhighlighter" class="brush: py">
+                    <![CDATA[
+                    try
+                    {
+
+                        string vcapMySql = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+
+                        JObject servicesMySql = Newtonsoft.Json.Linq.JObject.Parse(vcapMySql);
+                        string server = servicesMySql["mysql-5.5"].First["credentials"]["host"].ToString();
+                        string port = servicesMySql["mysql-5.5"].First["credentials"]["port"].ToString();
+                        string user = servicesMySql["mysql-5.5"].First["credentials"]["user"].ToString();
+                        string password = servicesMySql["mysql-5.5"].First["credentials"]["password"].ToString();
+                        string db = servicesMySql["mysql-5.5"].First["credentials"]["name"].ToString();
+
+                        string connectionString = String.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4}", server, port, db, user, password);
+
+                        MySqlConnection connection = new MySqlConnection(connectionString);
+                        connection.Open();
+
+                    }
+                    catch (Exception e)
+                    {
+                        //Handle connection exception
+                    }
+
+                    ]]>
+                </script>
+            </div>
+            <div class="well off">
+                <div class="alert alert-success" role="alert">This service was created during the microcloud creation process. The steps below will make it available for your app.</div>
+                <p>To create an instance of the mysql service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service mysql dotnet-starter-mysql dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-mysql:<br />
+                    &nbsp;&nbsp;type: mysql
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="postgresql_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the postgres service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service postgresql dotnet-starter-postgresql dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-postgresql:<br />
+                    &nbsp;&nbsp;type: postgresql
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="rabbitmq3_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the rabbit service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service rabbitmq3 dotnet-starter-rabbitmq3 dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-rabbitmq3:<br />
+                    &nbsp;&nbsp;type: rabbitmq3
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="mssql2014_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the sql server service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service mssql2014 dotnet-starter-mssql2014 dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-mssql2014:<br />
+                    &nbsp;&nbsp;type: mssql2014
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <div class="collapsediv" id="redis_div">
+            <div class="well on">
+                <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+
+                <script type="syntaxhighlighter" class="brush: py">
+                    <![CDATA[
+
+                    //add using statements
+                    //using Newtonsoft.Json.Linq
+                    //using StackExchange.Redis
+
+                    try
+                    {
+                    string vcap = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+
+                    JObject services = Newtonsoft.Json.Linq.JObject.Parse(vcap);
+                    string host = services["redis-2.8"].First["credentials"]["host"].ToString();
+                    string port = services["redis-2.8"].First["credentials"]["port"].ToString();
+                    string password = services["redis-2.8"].First["credentials"]["password"].ToString();
+                    string conn = String.Format("{0}:{1},password={2}", host, port, password);
+
+                    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conn);
+                    IDatabase db = redis.GetDatabase();
+                    string input = "This is an example on how to use redis in .NET";
+                    db.StringSet("mykey", input);
+
+                    string output = db.StringGet("mykey");
+
+
+                    }
+                    catch (Exception e)
+                    {
+                    //Handle exception
+                    }
+
+                    }
+
+                    ]]>
+                </script>
+            </div>
+            <div class="well off">
+                <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
+                <p>To create an instance of the redis service, execute the  commands below in the directory containing the your app:</p>
+                <pre>helion
+                    create-service redis dotnet-starter-redis dotnet-starter
+                </pre>
+                <p>You can also uncomment the following in the manifest.yml and push the app again.</p>
+                <pre>
+                    ${name}-redis:<br />
+                    &nbsp;&nbsp;type: redis
+                </pre>
+                <p>After the steps above, deploy the app and refresh this page. </p>
+                <pre>helion
+                    push --stack win2012r2
+                </pre>
+            </div>
+        </div>
+        <h2>User-Provided Services<span style="padding-left:10px;font-size:.6em">(these are externally provisioned and enabled)</span></h2>
+        <div id="buttons">
+
+        </div>
+        <div id="found_userprovided_services">
+            <div id="userprovided-service-buttons">
+
+            </div>
+
+
+
+
+                <div id='userprovided_divs'>
+                    <div id="userprovided-services-howto_div" class="well off">
+                        <div class="alert alert-warning" role="alert">
+                            No <a href="http://docs.hpcloud.com/devplatform/1.2/helion/user/services/1.2user-provided.html">User Provided Services</a> have been created and bound to this app. Create and bind to one by following the steps below. 
+                        </div>
+                        <pre>helion create-service user-provided [name of service]</pre>
+                        <p>The helion CLI will prompt you to specify credential keys and values (note defaults of hostname, port, password):</p>
+                        <pre>Which credentials to use for connections [hostname, port, password]:</pre>
+                        <p>
+                            You can override these defaults with your own credential keys, separate keys with commas, and the CLI will then prompt you for values of each credential key.<br />
+                            When you've created your service, you need to bind it to specific applications
+                        </p>
+                        <pre>helion bind-service [service name] [application name]</pre>
+                    </div>
+
+
+                </div>
+
+        </div>
+
+    </div>    
    
 
 </body>

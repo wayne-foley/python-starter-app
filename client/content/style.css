@@ -260,6 +260,11 @@ div.collapsediv > div.well.off {
     
 }
 
+div#userprovided_divs > div.well.off {
+    background-color: white;
+    border-color: #b3b3b3;
+}
+
 /* Responsive View
 =================================*/
 

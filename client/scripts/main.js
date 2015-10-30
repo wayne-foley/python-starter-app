@@ -10,9 +10,15 @@ $(document).ready(function() {
 	$(".collapsediv").hide();
 	
 	$.get( "/vcap_services", function( data ) {
-		var obj = $.parseJSON(data);
-		
+		if(data){
+			var obj = $.parseJSON(data);
+		}
+		else{
+			var obj = {};
+		}
 		services.forEach(function(value, index, array) {
+			console.log(obj[value]);
+			console.log(data[value]);
 			if(obj && obj[value] != null) {
 				
 				$("#als-service-buttons").append("<button id='"+value+"' class='btn btn-success togglebtn' type='button'>"+value+"</button>");
@@ -40,8 +46,8 @@ $(document).ready(function() {
 		});
 
 		 //Populate user-provided services
-        if(vcap['user-provided'] != null) {
-            var user_provided = vcap['user_provided'];
+        if(obj['user-provided'] != null) {
+            var user_provided = obj['user_provided'];
             $("#userprovided-services-howto_div").hide();
 
             user_provided.forEach( function(v,i) {

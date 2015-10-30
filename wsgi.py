@@ -25,7 +25,7 @@ view routes
 def getVcapServices(): 
     log.debug("retrieving VCAP_SERVICES")
     log.debug(VCAP_SERVICES)
-    return json.dumps(VCAP_SERVICES)
+    return VCAP_SERVICES
 
     
 @route('/')

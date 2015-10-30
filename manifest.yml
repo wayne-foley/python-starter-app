@@ -1,6 +1,6 @@
 applications:
   .:
-   name: python-starter-app
+   name: python
    memory: 128M
    services:
      ${name}-mysql-db:

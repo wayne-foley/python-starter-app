@@ -21,6 +21,7 @@
     <script src="/client/scripts/main.js"></script>
     <script src="/client/scripts/shCore.js"></script>
     <script src="/client/scripts/shBrushXml.js"></script>
+    <script src="/client/scripts/shBrushPython.js"></script>
     <!--Font-->
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600" rel="stylesheet" type="text/css">
     
@@ -150,29 +151,28 @@
                 <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
                 <script type="syntaxhighlighter" class="brush: py">
                     <![CDATA[
-                    try
-                    {
-
-                        string vcapMySql = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-
-                        JObject servicesMySql = Newtonsoft.Json.Linq.JObject.Parse(vcapMySql);
-                        string server = servicesMySql["mysql-5.5"].First["credentials"]["host"].ToString();
-                        string port = servicesMySql["mysql-5.5"].First["credentials"]["port"].ToString();
-                        string user = servicesMySql["mysql-5.5"].First["credentials"]["user"].ToString();
-                        string password = servicesMySql["mysql-5.5"].First["credentials"]["password"].ToString();
-                        string db = servicesMySql["mysql-5.5"].First["credentials"]["name"].ToString();
-
-                        string connectionString = String.Format("Server={0};Port={1};Database={2};Uid={3};Pwd={4}", server, port, db, user, password);
-
-                        MySqlConnection connection = new MySqlConnection(connectionString);
-                        connection.Open();
-
-                    }
-                    catch (Exception e)
-                    {
-                        //Handle connection exception
-                    }
-
+                    import MySQLdb
+                    try:
+                        mysqlUrl = urlparse.urlparse(os.environ['MYSQL_URL'])
+                            except KeyError:
+                                log.warn("env variable MYSQL_URL not found, reverting to DATABASE_URL")
+                                mysqlUrl = urlparse.urlparse(os.environ['DATABASE_URL'])
+                        url = mysqlUrl.hostname
+                        log.debug("url = %s"%url)
+                        password = mysqlUrl.password
+                        log.debug("password = %s"%password) 
+                        userName = mysqlUrl.username
+                        log.debug("username = %s"%userName)
+                        dbName = mysqlUrl.path[1:] # slice off the '/'
+                        log.debug("dbName = %s"%dbName) 
+                        self.log.debug("connecting database")
+                            db = MySQLdb.connect(host=self.url,user=self.userName,passwd=self.password,db=self.dbName) 
+                            cur = db.cursor()
+                            cur.execute('use %s'%self.dbName)
+                                return db
+                            except MySQLdb.Error, e:
+                                self.log.error("unable to connect to database")
+                                self.handleMySQLException(e,True)
                     ]]>
                 </script>
             </div>
@@ -259,42 +259,6 @@
         <div class="collapsediv" id="redis_div">
             <div class="well on">
                 <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
-
-                <script type="syntaxhighlighter" class="brush: py">
-                    <![CDATA[
-
-                    //add using statements
-                    //using Newtonsoft.Json.Linq
-                    //using StackExchange.Redis
-
-                    try
-                    {
-                    string vcap = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-
-                    JObject services = Newtonsoft.Json.Linq.JObject.Parse(vcap);
-                    string host = services["redis-2.8"].First["credentials"]["host"].ToString();
-                    string port = services["redis-2.8"].First["credentials"]["port"].ToString();
-                    string password = services["redis-2.8"].First["credentials"]["password"].ToString();
-                    string conn = String.Format("{0}:{1},password={2}", host, port, password);
-
-                    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(conn);
-                    IDatabase db = redis.GetDatabase();
-                    string input = "This is an example on how to use redis in .NET";
-                    db.StringSet("mykey", input);
-
-                    string output = db.StringGet("mykey");
-
-
-                    }
-                    catch (Exception e)
-                    {
-                    //Handle exception
-                    }
-
-                    }
-
-                    ]]>
-                </script>
             </div>
             <div class="well off">
                 <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>
@@ -322,11 +286,8 @@
 
             </div>
 
-
-
-
                 <div id='userprovided_divs'>
-                    <div id="userprovided-services-howto_div" class="well off">
+                    <div id="userprovided-services-howto_div" class="well off" style="display:none">
                         <div class="alert alert-warning" role="alert">
                             No <a href="http://docs.hpcloud.com/devplatform/1.2/helion/user/services/1.2user-provided.html">User Provided Services</a> have been created and bound to this app. Create and bind to one by following the steps below. 
                         </div>

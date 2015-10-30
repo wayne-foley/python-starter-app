@@ -17,8 +17,6 @@ $(document).ready(function() {
 			var obj = {};
 		}
 		services.forEach(function(value, index, array) {
-			console.log(obj[value]);
-			console.log(data[value]);
 			if(obj && obj[value] != null) {
 				
 				$("#als-service-buttons").append("<button id='"+value+"' class='btn btn-success togglebtn' type='button'>"+value+"</button>");
@@ -46,11 +44,14 @@ $(document).ready(function() {
 		});
 
 		 //Populate user-provided services
+		 console.log(obj);
+		 console.log(obj['user-provided']);
         if(obj['user-provided'] != null) {
-            var user_provided = obj['user_provided'];
-            $("#userprovided-services-howto_div").hide();
+            //var user_provided = obj['user_provided'];
+            //console.log(user_provided);
+            //console.log(obj['user_provided']);
 
-            user_provided.forEach( function(v,i) {
+            obj['user-provided'].forEach( function(v,i) {
                 upName = v['name'];
                 $("#userprovided-service-buttons").append("<button id='"+upName+"' class='btn btn-success togglebtn udbtn' type='button'>"+upName+"</button>");
                 $("#userprovided_divs").append("<div class='collapsediv well on' id='"+upName+"_div'></div>");
@@ -58,6 +59,9 @@ $(document).ready(function() {
                 $("#"+upName+"_div").append("<pre>"+JSON.stringify(v,null, "\t")+"</pre>");
 
             });
+        }
+        else{
+        	$("#userprovided-services-howto_div").show();
         }
 
         //collapsed_div behavior for standard services

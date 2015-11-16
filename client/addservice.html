@@ -151,28 +151,47 @@
                 <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
                 <script type="syntaxhighlighter" class="brush: py">
                     <![CDATA[
-                    import MySQLdb
-                    try:
-                        mysqlUrl = urlparse.urlparse(os.environ['MYSQL_URL'])
-                            except KeyError:
-                                log.warn("env variable MYSQL_URL not found, reverting to DATABASE_URL")
-                                mysqlUrl = urlparse.urlparse(os.environ['DATABASE_URL'])
-                        url = mysqlUrl.hostname
-                        log.debug("url = %s"%url)
-                        password = mysqlUrl.password
-                        log.debug("password = %s"%password) 
-                        userName = mysqlUrl.username
-                        log.debug("username = %s"%userName)
-                        dbName = mysqlUrl.path[1:] # slice off the '/'
-                        log.debug("dbName = %s"%dbName) 
-                        self.log.debug("connecting database")
-                            db = MySQLdb.connect(host=self.url,user=self.userName,passwd=self.password,db=self.dbName) 
-                            cur = db.cursor()
-                            cur.execute('use %s'%self.dbName)
-                                return db
-                            except MySQLdb.Error, e:
-                                self.log.error("unable to connect to database")
-                                self.handleMySQLException(e,True)
+                    import os
+					import json;
+					import MySQLdb
+					import logging
+
+					...
+
+					log = logging.getLogger('mysql-test-code')
+					log.setLevel(logging.DEBUG)
+
+					VCAP_SERVICES = os.getenv("VCAP_SERVICES")
+
+					vcap_json = json.loads(VCAP_SERVICES)
+					mysql_service = vcap_json['mysql'][0]
+
+					credentials = mysql_service['credentials']
+
+
+					hostname = credentials['hostname']
+					username = credentials['user']
+					password = credentials['password']
+					portNum = credentials['port']
+					dbName = credentials['name']
+
+					try:            
+    					dbInstance = MySQLdb.connect(host=hostname,user=username,passwd=password,db=dbName, port=int(portNum)) 
+    
+					    testTableCreate = 'CREATE TABLE IF NOT EXISTS testtable( test_id int not null, test_value char(100),PRIMARY KEY(test_id));'
+        
+					    cur = dbInstance.cursor()
+    					cur.execute(testTableCreate)
+    					dbInstance.commit()
+    
+    					testTableInsert = "INSERT INTO testtable(test_id, test_value) values(1,'foo')";
+    					cur = dbInstance.cursor()
+    					cur.execute(testTableInsert)
+    					dbInstance.commit()
+					except MySQLdb.Error as e:
+    					# handle failures here. 
+    					log.error('failure: '+str(e))
+					...
                     ]]>
                 </script>
             </div>
@@ -217,6 +236,56 @@
         <div class="collapsediv" id="rabbitmq3_div">
             <div class="well on">
                 <div class='alert alert-success' role='alert'>This service is enabled and bound to your app.  Use the connection info and code snippets below to use it in your app.</div>
+                <script type="syntaxhighlighter" class="brush: py">
+                    <![CDATA[
+					import os
+					import json;	
+					import logging
+					import pika
+
+					...
+
+					VCAP_SERVICES = os.getenv("VCAP_SERVICES")
+
+					vcap_json = json.loads(VCAP_SERVICES)
+					rabbit_service = vcap_json['rabbitmq3'][0]
+
+					credentials = rabbit_service['credentials']
+    
+					uri = credentials['uri']
+
+					 
+					try:
+						# creating a queue
+    					parameters = pika.URLParameters(uri)
+    					connection = pika.BlockingConnection(parameters)
+    					channel = connection.channel()
+    					queueName = "testqueue"
+    					channel.queue_declare(queue=queueName, durable=True)
+    
+    					# sending a message
+    					channel.basic_publish(exchange='', routing_key=queueName, body="some text")
+    					connection.close()
+					except Exception as e:
+    					log.error("error: "+str(e))
+
+					try:
+    					# getting a message 
+    					parameters = pika.URLParameters(uri)
+    					connection = pika.BlockingConnection(parameters)
+    
+    					channel = connection.channel()
+    
+    					method_frame, header_frame, body = channel.basic_get(queueName)
+    					if method_frame:
+        					channel.basic_ack(delivery_tag=method_frame.delivery_tag)
+    					connection.close()
+					except Exception as e:
+    					log.error("error: "+str(e))
+					
+					...
+					]]>
+				</script>
             </div>
             <div class="well off">
                 <div class="alert alert-warning" role="alert">This service was not provisioned during the microcloud creation process.  Create this service using the <a href="http://docs.hpcloud.com/#devplatform/1.3/helion/CLI/cfmgmt_growcluster_addservice.html">cf-mgmt tool</a>.</div>

@@ -1,15 +1,14 @@
 applications:
-  .:
-   name: python
-   memory: 128M
-   services:
-    - python-mysql-db
-    #- python-postgres-db
-    #- python-rabbitmq3
-    #- python-mongo-db
-    #- python-filesystem
-    #- python-harbor
-    #- python-memcached
-   helion:
+- name: python
+  memory: 128M
+  #services:
+   #- python-mysql-db
+   #- python-postgres-db
+   #- python-rabbitmq3
+   #- python-mongo-db
+   #- python-filesystem
+   #- python-harbor
+   #- python-memcached
+  stackato:
     env:
-        ENV_VAR: python
+      ENV_VAR: python

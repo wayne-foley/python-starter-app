@@ -9,6 +9,5 @@ applications:
    #- python-filesystem
    #- python-harbor
    #- python-memcached
-  stackato:
-    env:
-      ENV_VAR: python
+  env:
+    ENV_VAR: python

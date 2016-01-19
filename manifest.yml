@@ -10,4 +10,5 @@ applications:
    #- python-harbor
    #- python-memcached
   env:
-    ENV_VAR: python
+    USER_SERVICE: http://docs.hpcloud.com/#devplatform/2.0/helion/user/services/user-provided.html
+    CF_MGMT_TOOL: http://docs.hpcloud.com/#devplatform/2.0/helion/CLI/cfmgmt_growcluster_addservice.html

@@ -6,20 +6,36 @@ import logging
 from bottle import route, get, post, request, template
 import json
 
+VCAP_APPLICATION = os.getenv("VCAP_APPLICATION")
+VCAP_SERVICES = os.getenv("VCAP_SERVICES")
+
 SCRIPT_ROOT = os.path.join(os.path.dirname(__file__), 'client/scripts')
 CSS_ROOT = os.path.join(os.path.dirname(__file__), 'client/content')
 IMG_ROOT = os.path.join(os.path.dirname(__file__), 'client/img')
 PAGE_ROOT = os.path.join(os.path.dirname(__file__), 'client')
 logging.basicConfig()
-log = logging.getLogger('python-starter-app')
+log = logging.getLogger(json.loads(VCAP_APPLICATION)['application_name'])
 log.setLevel(logging.DEBUG)
-
-VCAP_SERVICES = os.getenv("VCAP_SERVICES")
 
 
 '''
 view routes
 '''
+
+@route('/links')
+def getLinks():
+    log.debug("retrieving links")
+    links = {
+        "USER_SERVICE": os.getenv("USER_SERVICE"),
+        "CF_MGMT_TOOL": os.getenv("CF_MGMT_TOOL"),
+    }
+    return json.dumps(links)
+
+@route('/vcap_application')
+def getVcapApplication():
+    log.debug("retrieving VCAP_APPLICATION")
+    log.debug(VCAP_APPLICATION)
+    return VCAP_APPLICATION
 
 @route('/vcap_services')
 def getVcapServices(): 
@@ -27,7 +43,6 @@ def getVcapServices():
     log.debug(VCAP_SERVICES)
     return VCAP_SERVICES
 
-    
 @route('/')
 def defaultRoute():
     log.debug("default route request")
